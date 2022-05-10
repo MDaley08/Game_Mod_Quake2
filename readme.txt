@@ -16,4 +16,7 @@ personal delivarables:
 * shop to upgrade spells and weapons 
 * have monsters drop loot.
 How To install Mod:
-to install this 
+to install this mod clone repo to local machine and then copy and paste the final_mod folder into your quake 2 folder.
+then create a shortcutcut of the quake2 executable and then open propeties of the shortcut and add +set same final_mod at the end of path in target field.
+Testing mod:
+5
