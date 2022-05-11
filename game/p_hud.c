@@ -317,12 +317,16 @@ void HelpComputer(edict_t* ent)
 	Com_sprintf(string, sizeof(string),
 		"xv 32 yv 8 picn help "			// background
 		"xv 202 yv 12 string2 \"%s\" "		// skill
+		"xv 50 yv 50 string2 \"%s\" "		// mana tokens:
+		"xv 150 yv 50 string2 \"%i\" "		// token value
 		"xv 0 yv 24 cstring2 \"%s\" "		// level name
 		"xv 0 yv 54 cstring2 \"%s\" "		// help 1
 		"xv 0 yv 110 cstring2 \"%s\" "		// help 2
 		"xv 50 yv 164 string2 \" kills     goals    secrets\" "
 		"xv 50 yv 172 string2 \"%3i/%3i     %i/%i       %i/%i\" ",
 		sk,
+		"Mana Tokens:",
+		ent->client->pers.mana_token,
 		level.level_name,
 		game.helpmessage1,
 		game.helpmessage2,
@@ -378,8 +382,7 @@ static const char* helpString[] =
 	"Flame shield:temporary shield that negates damage,",
 	"also does damage to nearby enemies while active.",
 	"Flaming armament: adds fire damage to weapons.",
-	"Heat wave:aoe that damages enemies, pushes them",
-	"back and blinds them(makes player invis).",
+	"Heat wave:aoe that damages enemies, pushes them back.",
 	"Phoneix:once per game health is fully refilled", 
 	"also triggers blinding light flaming armament.",
 	"Hotkeys:",
@@ -411,11 +414,10 @@ void HelpMenu(edict_t* ent)
 		"xv 35 yv -140 cstring2 \"%s\""		// flame shield 2
 		"xv 20 yv -125 cstring2 \"%s\""		// flaming aramament
 		"xv 22 yv -110 cstring2 \"%s\""		// heat wave 1
-		"xv 22 yv -100 cstring2 \"%s\""		// heat wave 2
-		"xv 20 yv -85 cstring2 \"%s\""		// phoneix 1
-		"xv 20 yv -70 cstring2 \"%s\""		// phoneix 2
-		"xv 0 yv -55 cstring2 \"%s\""		// hotkeys title
-		"xv 0 yv -40 cstring2 \"%s\"",		// hotkeys
+		"xv 20 yv -95 cstring2 \"%s\""		// phoneix 1
+		"xv 20 yv -85 cstring2 \"%s\""		// phoneix 2
+		"xv 0 yv -70 cstring2 \"%s\""		// hotkeys title
+		"xv 0 yv -55 cstring2 \"%s\"",		// hotkeys
 		helpString[0],	// main title
 		helpString[1],	// about title
 		helpString[2],	// about body 1
@@ -426,12 +428,11 @@ void HelpMenu(edict_t* ent)
 		helpString[7],	// objective body 1
 		helpString[8],	// objective body 2
 		helpString[9],	// weapon and skills title
-		helpString[10],	// weapon and skills body 1
-		helpString[11],	// weapon and skills body 2
-		helpString[12],	// spells title
-		helpString[13],	// fireball
-		helpString[14],	// flame shield 1
-		helpString[15]);	// flame shield 2
+		helpString[10],	// weapon and skills body 2
+		helpString[11],	// spells title
+		helpString[12],	// fireball
+		helpString[13],	// flame shield 1
+		helpString[14]);	// flame shield 2
 
 	gi.WriteByte(svc_layout);
 	gi.WriteString(string);

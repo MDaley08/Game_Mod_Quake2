@@ -24,6 +24,10 @@ void ClientUserinfoChanged (edict_t *ent, char *userinfo);
 
 void SP_misc_teleporter_dest (edict_t *ent);
 
+int monster_wave = 1;
+int spawn_timer = 0;
+
+
 //
 // Gross, ugly, disgustuing hack section
 //
@@ -621,11 +625,9 @@ void InitClientPersistant (gclient_t *client)
 
 	//MICAHEL MOD START
 	client->pers.mana_token = 0;
-	client->pers.spell_charges = 5;
-	client->pers.max_spell_charges = 5;
 	//MICHAEL MOD END
 
-	client->pers.max_tokens		= 1000;
+	
 	client->pers.max_bullets	= 200;
 	client->pers.max_shells		= 100;
 	client->pers.max_rockets	= 50;
@@ -1565,7 +1567,56 @@ void PrintPmove (pmove_t *pm)
 	c2 = CheckBlock (&pm->cmd, sizeof(pm->cmd));
 	Com_Printf ("sv %3i:%i %i\n", pm->cmd.impulse, c1, c2);
 }
+void SpawnMonsters() {
+	char* monster_name[60];
+	edict_t* ent;
 
+	if (level.total_monsters == 4) {
+		return;
+	}
+
+	memcpy(monster_name, "monster_soldier", 16);
+
+	ent = G_Spawn();
+	ent->classname = monster_name;
+	ent->s.origin[0] = -80;
+	ent->s.origin[1] = -620;
+	ent->s.origin[2] = 40;
+	ent->targetname = "mich";
+	ent->s.angles[1] = 105;
+	ED_CallSpawn(ent);
+
+	ent = G_Spawn();
+	ent->classname = monster_name;
+	ent->s.origin[0] = -720;
+	ent->s.origin[1] = 90;
+	ent->s.origin[2] = 40;
+	ent->targetname = "mich";
+	ent->s.angles[1] = 0;
+	ED_CallSpawn(ent);
+
+	ent = G_Spawn();
+	ent->classname = monster_name;
+	ent->s.origin[0] = -112;
+	ent->s.origin[1] = 70;
+	ent->s.origin[2] = 40;
+	ent->targetname = "mich";
+	ent->s.angles[1] = 270;
+	ED_CallSpawn(ent);
+
+	ent = G_Spawn();
+	ent->classname = monster_name;
+	ent->s.origin[0] = 608;
+	ent->s.origin[1] = 90;
+	ent->s.origin[2] = 40;
+	ent->targetname = "mich";
+	ent->s.angles[1] = 180;
+	ED_CallSpawn(ent);
+
+
+	return;
+
+}
 /*
 ==============
 ClientThink
@@ -1748,6 +1799,25 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 		other = g_edicts + i;
 		if (other->inuse && other->client->chase_target == ent)
 			UpdateChaseCam(other);
+	}
+
+	spawn_timer = level.framenum * FRAMETIME;
+	if (Q_stricmp(level.mapname, "mich") == 0) {
+
+		if (spawn_timer % 15 != 0)
+		{
+			if (level.killed_monsters >= 4) 
+			{
+				level.total_monsters = 0;
+			}
+		}
+		if (spawn_timer % 15 == 0) {
+			if (level.total_monsters == 0) {
+				monster_wave++;
+				SpawnMonsters();
+			}
+			return;
+		}
 	}
 }
 

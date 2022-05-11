@@ -881,10 +881,6 @@ void soldier_fire7 (edict_t *self)
 	soldier_fire (self, 6);
 }
 
-void dead_think (edict_t *self)
-{
-	SP_item_mana_token(self);
-}
 void soldier_dead (edict_t *self)
 {
 	VectorSet (self->mins, -16, -16, -24);
@@ -1194,8 +1190,6 @@ void soldier_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int dama
 	else {
 		self->monsterinfo.currentmove = &soldier_move_death6;
 	}
-
-
 }
 
 
@@ -1223,7 +1217,7 @@ void SP_monster_soldier_x (edict_t *self)
 
 	self->pain = soldier_pain;
 	self->die = soldier_die;
-	self->item = FindItemByClassname("item_mana_token");
+	self->item = FindItemByClassname("mana_token");
 	self->monsterinfo.stand = soldier_stand;
 	self->monsterinfo.walk = soldier_walk;
 	self->monsterinfo.run = soldier_run;
@@ -1272,7 +1266,7 @@ void SP_monster_soldier (edict_t *self)
 		G_FreeEdict (self);
 		return;
 	}
-
+	SP_monster_soldier_x(self);
 	SP_monster_soldier_x (self);
 
 	sound_pain = gi.soundindex ("soldier/solpain1.wav");

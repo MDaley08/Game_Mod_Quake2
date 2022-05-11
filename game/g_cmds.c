@@ -897,8 +897,92 @@ void Cmd_PlayerList_f(edict_t* ent)
 		strcat(text, st);
 	}
 	gi.cprintf(ent, PRINT_HIGH, "%s", text);
+
 }
 
+//MICHAEL MOD START
+/*
+==================
+Cmd_fireball_f
+
+fireball command
+==================
+*/
+void Cmd_Fireball_f(edict_t* ent) {
+
+	// check if you have a spell slot avaliable 
+	if (ent->spell_charges > 0) {
+		gi.dprintf(ent, PRINT_HIGH, "Fireball!\n");
+		ent->spell_charges--;
+		// execute fireball spell
+		//Spell_Fireball(ent);
+	}
+	else {
+		gi.cprintf(ent, PRINT_HIGH, "OUT OF SPELL CHARGES\n");
+	}
+}
+/*
+==================
+Cmd_Flaming_Armament_f
+
+flaming armament command
+==================
+*/
+void Cmd_Flaming_Armament_f(edict_t* ent) {
+
+	// check if you have a spell slot avaliable 
+	if (ent->spell_charges > 0) {
+		gi.dprintf(ent, PRINT_HIGH, "FLAMING ARMAMENT!\n");
+		ent->spell_charges--;
+		// execute fireball spell
+		//Spell_Fireball(ent);
+	}
+	else {
+		gi.cprintf(ent, PRINT_HIGH, "OUT OF SPELL CHARGES\n");
+	}
+}
+
+/*
+==================
+Cmd_Flame_Shield_f
+
+flame shield command
+==================
+*/
+void Cmd_Flame_Shield_f(edict_t* ent) {
+
+	// check if you have a spell slot avaliable 
+	if (ent->spell_charges > 0) {
+		gi.dprintf(ent, PRINT_HIGH, "FLAME SHIELD!\n");
+		ent->spell_charges--;
+		// execute fireball spell
+		//Spell_Flame_Shield(ent);
+	}
+	else {
+		gi.cprintf(ent, PRINT_HIGH, "OUT OF SPELL CHARGES\n");
+	}
+}
+/*
+==================
+Cmd_Heat_wave_f
+
+heat wave command
+==================
+*/
+void Cmd_Heat_wave_f(edict_t* ent) {
+
+	// check if you have a spell slot avaliable 
+	if (ent->spell_charges > 0) {
+		gi.dprintf(ent, PRINT_HIGH, "HEAT WAVE!\n");
+		ent->spell_charges--;
+		// execute fireball spell
+		//Spell_Heat_Wave(ent);
+	}
+	else {
+		gi.cprintf(ent, PRINT_HIGH, "OUT OF SPELL CHARGES\n");
+	}
+}
+//MICHAEL MOD END 
 
 /*
 =================
@@ -944,13 +1028,6 @@ void ClientCommand(edict_t* ent)
 		Cmd_Help_Menu_f(ent);
 		return;
 	}
-
-	if (Q_stricmp(cmd, "test") == 0)
-	{
-		Cmd_test(ent);
-		return;
-	}
-
 
 	if (level.intermissiontime)
 		return;
@@ -999,6 +1076,14 @@ void ClientCommand(edict_t* ent)
 		Cmd_Wave_f(ent);
 	else if (Q_stricmp(cmd, "playerlist") == 0)
 		Cmd_PlayerList_f(ent);
+	else if (Q_stricmp(cmd, "fireball") == 0)
+		Cmd_Fireball_f(ent);
+	else if (Q_stricmp(cmd, "flamearmament") == 0)
+		Cmd_Flaming_Armament_f;
+	else if (Q_stricmp(cmd, "flameshield") == 0)
+		Cmd_Flame_Shield_f;
+	else if (Q_stricmp(cmd, "heat wave") == 0)
+		Cmd_Heat_wave_f;
 	else	// anything that doesn't match a command will be a chat
 		Cmd_Say_f(ent, false, true);
 }

@@ -2121,7 +2121,7 @@ tank commander's head
 	},
 
 	{
-		"item_mana_token",
+		"mana_token",
 		Pickup_Mana_Token,
 		NULL,
 		NULL,

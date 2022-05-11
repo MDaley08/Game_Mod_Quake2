@@ -864,11 +864,6 @@ typedef struct
 	qboolean	spectator;			// client is a spectator
 	//MICAHEL MOD START
 	int mana_token;					// current amount of upgrade token
-	int max_mana_token;				// max amount of upgrade token
-	int spell_charges;				// current spell charges
-	int max_spell_charges;			// maximum amount of spell charges
-	qboolean phoneix_status;		// has phoneix triggered
-
 	//MICHAEL MOD END
 } client_persistant_t;
 
@@ -1119,5 +1114,10 @@ struct edict_s
 	// common data blocks
 	moveinfo_t		moveinfo;
 	monsterinfo_t	monsterinfo;
+	//Michael Mod Start
+	int spell_charges;				// current spell charges
+	int max_spell_charges;			// maximum amount of spell charges
+	qboolean phoneix_status;		// has phoneix triggered
+	//Michael M
 };
 
