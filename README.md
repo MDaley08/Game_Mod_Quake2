@@ -1,4 +1,4 @@
-<H2>Quake 2 Pyro MOD<H2>
+<H2>Quake 2 Pyro MOD#
 
 * About:
 This is a quake 2 mod that  replaces quake 2 weapons with magical melee weapons and spells and 
