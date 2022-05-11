@@ -1,5 +1,6 @@
 Quake 2 Pyro MOD
-##About:
+
+* About:
 This is a quake 2 mod that  replaces quake 2 weapons with magical melee weapons and spells and 
 puts the player within an arena where they must kill waves of monsters to survive and utilize loot called runes droped from 
 enemies to up upgrade their magical weapons and spells within an item shop.
