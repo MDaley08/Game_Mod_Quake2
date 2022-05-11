@@ -499,6 +499,7 @@ qboolean FindTarget (edict_t *self)
 		if (client->light_level <= 5)
 			return false;
 
+
 		if (!visible (self, client))
 		{
 			return false;

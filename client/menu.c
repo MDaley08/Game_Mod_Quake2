@@ -2756,6 +2756,7 @@ static menulist_s	s_weapons_stay_box;
 static menulist_s	s_instant_powerups_box;
 static menulist_s	s_powerups_box;
 static menulist_s	s_health_box;
+static menulist_s	s_mana_box;
 static menulist_s	s_spawn_farthest_box;
 static menulist_s	s_teamplay_box;
 static menulist_s	s_samelevel_box;
@@ -3096,6 +3097,7 @@ void DMOptions_MenuInit( void )
 	Menu_AddItem( &s_dmoptions_menu, &s_instant_powerups_box );
 	Menu_AddItem( &s_dmoptions_menu, &s_powerups_box );
 	Menu_AddItem( &s_dmoptions_menu, &s_health_box );
+	Menu_AddItem( &s_dmoptions_menu, &s_mana_box );
 	Menu_AddItem( &s_dmoptions_menu, &s_armor_box );
 	Menu_AddItem( &s_dmoptions_menu, &s_spawn_farthest_box );
 	Menu_AddItem( &s_dmoptions_menu, &s_samelevel_box );

@@ -1260,7 +1260,6 @@ void SP_misc_deadsoldier (edict_t *ent)
 	ent->svflags |= SVF_MONSTER|SVF_DEADMONSTER;
 	ent->die = misc_deadsoldier_die;
 	ent->monsterinfo.aiflags |= AI_GOOD_GUY;
-
 	gi.linkentity (ent);
 }
 

@@ -48,6 +48,7 @@ static int	power_shield_index;
 
 #define HEALTH_IGNORE_MAX	1
 #define HEALTH_TIMED		2
+#define TOKEN_IGNORE_MAX	3
 
 void Use_Quad (edict_t *ent, gitem_t *item);
 static int	quad_drop_timeout_hack;
@@ -584,8 +585,16 @@ qboolean Pickup_Health (edict_t *ent, edict_t *other)
 
 	return true;
 }
+//======================================================================
+
+qboolean Pickup_Mana_Token(edict_t* ent, edict_t* other)
+{
+	other->client->pers.mana_token++;
+}
+
 
 //======================================================================
+
 
 int ArmorIndex (edict_t *ent)
 {
@@ -2111,6 +2120,27 @@ tank commander's head
 /* precache */ "items/s_health.wav items/n_health.wav items/l_health.wav items/m_health.wav"
 	},
 
+	{
+		"item_mana_token",
+		Pickup_Mana_Token,
+		NULL,
+		NULL,
+		NULL,
+		"items/pkup.wav",
+		"models/items/keys/key/tris.md2",EF_ROTATE,
+		NULL,
+		"i_mana",
+		"Mana Token",
+		1,
+		0,
+		NULL,
+		0,
+		0,
+		NULL,
+		0,
+/* precache */ ""
+	},
+
 	// end of list marker
 	{NULL}
 };
@@ -2181,7 +2211,14 @@ void SP_item_health_mega (edict_t *self)
 	gi.soundindex ("items/m_health.wav");
 	self->style = HEALTH_IGNORE_MAX|HEALTH_TIMED;
 }
-
+// MICHAEL MOD END 
+void SP_item_mana_token(edict_t* self)
+{
+	self->model = "models/items/keys/key/tris.md2";
+	SpawnItem(self, FindItem("Mana Token"));
+	gi.soundindex("items/pkup.wav");
+}
+// MICHAEL MOD END
 
 void InitItems (void)
 {

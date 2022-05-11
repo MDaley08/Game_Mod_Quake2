@@ -501,7 +501,6 @@ player_die
 void player_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, vec3_t point)
 {
 	int		n;
-
 	VectorClear (self->avelocity);
 
 	self->takedamage = DAMAGE_YES;
@@ -619,6 +618,13 @@ void InitClientPersistant (gclient_t *client)
 	client->pers.health			= 100;
 	client->pers.max_health		= 100;
 
+	//MICAHEL MOD START
+	client->pers.mana_token = 0;
+	client->pers.spell_charges = 5;
+	client->pers.max_spell_charges = 5;
+	//MICHAEL MOD END
+
+	client->pers.max_tokens		= 1000;
 	client->pers.max_bullets	= 200;
 	client->pers.max_shells		= 100;
 	client->pers.max_rockets	= 50;
@@ -1694,6 +1700,7 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 		}
 
 	}
+
 
 	client->oldbuttons = client->buttons;
 	client->buttons = ucmd->buttons;

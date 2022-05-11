@@ -881,13 +881,16 @@ void soldier_fire7 (edict_t *self)
 	soldier_fire (self, 6);
 }
 
+void dead_think (edict_t *self)
+{
+	SP_item_mana_token(self);
+}
 void soldier_dead (edict_t *self)
 {
 	VectorSet (self->mins, -16, -16, -24);
 	VectorSet (self->maxs, 16, 16, -8);
 	self->movetype = MOVETYPE_TOSS;
 	self->svflags |= SVF_DEADMONSTER;
-	self->nextthink = 0;
 	gi.linkentity (self);
 }
 
@@ -1150,7 +1153,7 @@ void soldier_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int dama
 	{
 		gi.sound (self, CHAN_VOICE, gi.soundindex ("misc/udeath.wav"), 1, ATTN_NORM, 0);
 		for (n= 0; n < 3; n++)
-			ThrowGib (self, "models/objects/gibs/sm_meat/tris.md2", damage, GIB_ORGANIC);
+		ThrowGib (self, "models/objects/gibs/sm_meat/tris.md2", damage, GIB_ORGANIC);
 		ThrowGib (self, "models/objects/gibs/chest/tris.md2", damage, GIB_ORGANIC);
 		ThrowHead (self, "models/objects/gibs/head2/tris.md2", damage, GIB_ORGANIC);
 		self->deadflag = DEAD_DEAD;
@@ -1188,14 +1191,18 @@ void soldier_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int dama
 		self->monsterinfo.currentmove = &soldier_move_death4;
 	else if (n == 3)
 		self->monsterinfo.currentmove = &soldier_move_death5;
-	else
+	else {
 		self->monsterinfo.currentmove = &soldier_move_death6;
+	}
+
+
 }
 
 
 //
 // SPAWN
 //
+
 
 void SP_monster_soldier_x (edict_t *self)
 {
@@ -1216,7 +1223,7 @@ void SP_monster_soldier_x (edict_t *self)
 
 	self->pain = soldier_pain;
 	self->die = soldier_die;
-
+	self->item = FindItemByClassname("item_mana_token");
 	self->monsterinfo.stand = soldier_stand;
 	self->monsterinfo.walk = soldier_walk;
 	self->monsterinfo.run = soldier_run;

@@ -372,7 +372,7 @@ static const char* helpString[] =
 	"About:",
 	"you are put into an arena where you fight waves of",
 	"monsters with magical weapons(absent) and spells.",
-	"Which can be upgraded with runes looted from monsters.",
+	"Which can be upgraded with mana token looted from monsters.",
 	"Spells:",
 	"Fireball:cast  to shoot a ball of fire at enemy.",
 	"Flame shield:temporary shield that negates damage,",
@@ -452,6 +452,27 @@ void Cmd_Help_Menu_f(edict_t* ent)
 	HelpMenu(ent);
 }
 
+/*
+==================
+test
+==================
+*/
+void test(edict_t* ent) {
+
+	char* string[3000];
+	Com_sprintf(string, sizeof(string),"xv 32 yv 8 picn help" "xv 30 yv 8 \"%s\"", "test");
+}
+
+/*
+==================
+test
+==================
+*/
+
+void Cmd_test(edict_t* ent) {
+	test(ent);
+}
+
 //MICAHEL MOD END 
 
 //=======================================================================
@@ -474,6 +495,13 @@ void G_SetStats(edict_t* ent)
 	ent->client->ps.stats[STAT_HEALTH] = ent->health;
 
 	//
+	// mana
+	// 
+	ent->client->ps.stats[STAT_MANA_ICON] = level.pic_mana;
+	ent->client->ps.stats[STAT_MANA] = ent->mana;
+
+
+	// 
 	// ammo
 	//
 	if (!ent->client->ammo_index /* || !ent->client->pers.inventory[ent->client->ammo_index] */)

@@ -194,7 +194,8 @@ re.RegisterModel ("models/objects/gibs/bone2/tris.md2");
 
 re.RegisterPic ("w_machinegun");
 re.RegisterPic ("a_bullets");
-re.RegisterPic ("i_health");
+re.RegisterPic("i_health"); 
+re.RegisterPic("i_mana");
 re.RegisterPic ("a_grenades");
 
 //ROGUE

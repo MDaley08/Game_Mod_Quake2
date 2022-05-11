@@ -323,6 +323,7 @@ typedef struct
 	int			sound2_entity_framenum;
 
 	int			pic_health;
+	int			pic_mana;
 
 	int			total_secrets;
 	int			found_secrets;
@@ -842,7 +843,9 @@ typedef struct
 
 	int			selected_item;
 	int			inventory[MAX_ITEMS];
-
+	// mana tokens
+	int			tokens;
+	int			max_tokens;
 	// ammo capacities
 	int			max_bullets;
 	int			max_shells;
@@ -861,6 +864,14 @@ typedef struct
 	int			helpchanged;
 
 	qboolean	spectator;			// client is a spectator
+	//MICAHEL MOD START
+	int mana_token;					// current amount of upgrade token
+	int max_mana_token;				// max amount of upgrade token
+	int spell_charges;				// current spell charges
+	int max_spell_charges;			// maximum amount of spell charges
+	qboolean phoneix_status;
+
+	//MICHAEL MOD END
 } client_persistant_t;
 
 // client data that stays across deathmatch respawns
@@ -1055,6 +1066,8 @@ struct edict_s
 	int			gib_health;
 	int			deadflag;
 	qboolean	show_hostile;
+
+	int			mana;
 
 	float		powerarmor_time;
 

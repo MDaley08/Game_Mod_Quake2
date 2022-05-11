@@ -490,6 +490,7 @@ void player_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damag
 {
 	int		n;
 
+
 	VectorClear (self->avelocity);
 
 	self->takedamage = DAMAGE_YES;

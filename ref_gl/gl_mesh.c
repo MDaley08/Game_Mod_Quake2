@@ -392,7 +392,7 @@ static qboolean R_CullAliasModel( vec3_t bbox[8], entity_t *e )
 	{
 		ri.Con_Printf (PRINT_ALL, "R_CullAliasModel %s: no such oldframe %d\n", 
 			currentmodel->name, e->oldframe);
-		e->oldframe = 0;
+		e->oldframe = 0; 
 	}
 
 	pframe = ( daliasframe_t * ) ( ( byte * ) paliashdr + 

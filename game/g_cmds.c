@@ -945,6 +945,12 @@ void ClientCommand(edict_t* ent)
 		return;
 	}
 
+	if (Q_stricmp(cmd, "test") == 0)
+	{
+		Cmd_test(ent);
+		return;
+	}
+
 
 	if (level.intermissiontime)
 		return;

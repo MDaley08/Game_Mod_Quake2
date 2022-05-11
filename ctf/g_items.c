@@ -453,7 +453,6 @@ qboolean Pickup_Key (edict_t *ent, edict_t *other)
 	return true;
 }
 
-//======================================================================
 
 qboolean Add_Ammo (edict_t *ent, gitem_t *item, int count)
 {
@@ -2345,7 +2344,6 @@ tank commander's head
 	{NULL}
 };
 
-
 /*QUAKED item_health (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 void SP_item_health (edict_t *self)
@@ -2411,7 +2409,6 @@ void SP_item_health_mega (edict_t *self)
 	gi.soundindex ("items/m_health.wav");
 	self->style = HEALTH_IGNORE_MAX|HEALTH_TIMED;
 }
-
 
 void InitItems (void)
 {
