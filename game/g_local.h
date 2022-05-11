@@ -843,9 +843,7 @@ typedef struct
 
 	int			selected_item;
 	int			inventory[MAX_ITEMS];
-	// mana tokens
-	int			tokens;
-	int			max_tokens;
+
 	// ammo capacities
 	int			max_bullets;
 	int			max_shells;
@@ -869,7 +867,7 @@ typedef struct
 	int max_mana_token;				// max amount of upgrade token
 	int spell_charges;				// current spell charges
 	int max_spell_charges;			// maximum amount of spell charges
-	qboolean phoneix_status;
+	qboolean phoneix_status;		// has phoneix triggered
 
 	//MICHAEL MOD END
 } client_persistant_t;
