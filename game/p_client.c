@@ -24,9 +24,6 @@ void ClientUserinfoChanged (edict_t *ent, char *userinfo);
 
 void SP_misc_teleporter_dest (edict_t *ent);
 
-int monster_wave = 1;
-int spawn_timer = 0;
-
 
 //
 // Gross, ugly, disgustuing hack section
@@ -1571,17 +1568,18 @@ void SpawnMonsters() {
 	char* monster_name[60];
 	edict_t* ent;
 
-	if (level.total_monsters == 4) {
+	if (level.total_monsters > 5) {
 		return;
 	}
 
 	memcpy(monster_name, "monster_soldier", 16);
 
+	//spawn fuctions set to spawn in the same location of initially placed enemies in custom map
 	ent = G_Spawn();
 	ent->classname = monster_name;
 	ent->s.origin[0] = -80;
 	ent->s.origin[1] = -620;
-	ent->s.origin[2] = 40;
+	ent->s.origin[2] = 43;
 	ent->targetname = "mich";
 	ent->s.angles[1] = 105;
 	ED_CallSpawn(ent);
@@ -1590,7 +1588,7 @@ void SpawnMonsters() {
 	ent->classname = monster_name;
 	ent->s.origin[0] = -720;
 	ent->s.origin[1] = 90;
-	ent->s.origin[2] = 40;
+	ent->s.origin[2] = 43;
 	ent->targetname = "mich";
 	ent->s.angles[1] = 0;
 	ED_CallSpawn(ent);
@@ -1599,7 +1597,7 @@ void SpawnMonsters() {
 	ent->classname = monster_name;
 	ent->s.origin[0] = -112;
 	ent->s.origin[1] = 70;
-	ent->s.origin[2] = 40;
+	ent->s.origin[2] = 43;
 	ent->targetname = "mich";
 	ent->s.angles[1] = 270;
 	ED_CallSpawn(ent);
@@ -1608,7 +1606,7 @@ void SpawnMonsters() {
 	ent->classname = monster_name;
 	ent->s.origin[0] = 608;
 	ent->s.origin[1] = 90;
-	ent->s.origin[2] = 40;
+	ent->s.origin[2] = 43;
 	ent->targetname = "mich";
 	ent->s.angles[1] = 180;
 	ED_CallSpawn(ent);
@@ -1801,22 +1799,14 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 			UpdateChaseCam(other);
 	}
 
-	spawn_timer = level.framenum * FRAMETIME;
 	if (Q_stricmp(level.mapname, "mich") == 0) {
 
-		if (spawn_timer % 15 != 0)
-		{
-			if (level.killed_monsters >= 4) 
-			{
-				level.total_monsters = 0;
-			}
+		if (level.killed_monsters > 3){
+			level.total_monsters = 0;
+			level.killed_monsters = 0;
 		}
-		if (spawn_timer % 15 == 0) {
-			if (level.total_monsters == 0) {
-				monster_wave++;
-				SpawnMonsters();
-			}
-			return;
+		if (level.total_monsters == 0) {
+			SpawnMonsters();
 		}
 	}
 }
